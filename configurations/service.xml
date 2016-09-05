@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:doctrine="http://symfony.com/schema/dic/doctrine"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd
+        http://symfony.com/schema/dic/doctrine
+        http://symfony.com/schema/dic/doctrine/doctrine-1.0.xsd">
+    <services>
+        <!--Frontend controller-->
+        <service id="routerProvider" class="\Deployer\Routing\RouteProvider"/>
+        <service id="controllerResolver" class="\Symfony\Component\HttpKernel\Controller\ControllerResolver"/>
+        <service id="context" class="\Symfony\Component\Routing\RequestContext"/>
+
+        <service id="frontController" class="\Deployer\Controller\FrontController">
+            <argument type="service" id="routerProvider"/>
+            <argument type="service" id="context"/>
+            <argument type="service" id="controllerResolver"/>
+        </service>
+
+        <!--  Consumer Credentials  -->
+        <service id="request_stack" class="Symfony\Component\HttpFoundation\RequestStack"/>
+        <service id="credentialRepository" class="\Deployer\Cvs\GIT\Api\Bitbucket\CredentialRepository">
+            <argument id="connectionParams" type="collection">
+                <argument key="driver">pdo_mysql</argument>
+                <argument key="host">127.0.0.1</argument>
+                <argument key="dbname">deployer_db</argument>
+                <argument key="user">root</argument>
+                <argument key="password"></argument>
+            </argument>
+        </service>
+        <service id="credentials" class="\Deployer\Entity\Credentials"/>
+        <service id="curlAdapter" class="\Deployer\Transport\Adapter\Curl"/>
+
+        <service id="credentialFacade" class="\Deployer\Cvs\GIT\Api\Bitbucket\CredentialFacade">
+            <argument type="service" id="credentialRepository"/>
+            <argument type="service" id="credentials"/>
+            <argument type="service" id="curlAdapter"/>
+        </service>
+    </services>
+
+
+</container>

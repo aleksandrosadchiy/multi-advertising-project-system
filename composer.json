@@ -1,0 +1,26 @@
+{
+  "require": {
+    "symfony/console": "*.*",
+    "symfony/symfony" : "^3.1",
+    "symfony/dependency-injection": "^3.1",
+    "doctrine/common": "*.*",
+    "doctrine/dbal": "*.*",
+    "doctrine/orm": "*",
+    "monolog/monolog": "*.*",
+    "symfony/routing": "*.*",
+    "sensio/framework-extra-bundle": "*.*"
+  },
+  "require-dev" : {
+    "phpunit/phpunit" : "*.*",
+    "symfony/console": "*.*"
+  },
+  "suggests" : {
+      "symfony/console": " For helpful console commands such as SQL execution and import of files"
+  },
+  "autoload": {
+    "psr-4" : {
+      "Deployer\\" : "src",
+      "DeployerTest\\": "test"
+    }
+  }
+}

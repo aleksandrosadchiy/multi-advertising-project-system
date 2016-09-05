@@ -1,0 +1,31 @@
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing
+        1.xsd">
+
+    <route id="blog_list" path="/credentials-form/">
+        <default key="_controller">\Deployer\Controller\BlogController::listAction</default>
+        <default key="_templates">consumerCredentials.phtml</default>
+    </route>
+    <route id="credentials-save" path="/credentials-save/">
+        <default key="_controller">\Deployer\Controller\CredentialsController::saveCredentialsAction</default>
+    </route>
+    <route id="credentials-refresh-token" path="/obtaine-refresh-token/">
+        <default key="_controller">\Deployer\Controller\CredentialsController::obtainRefreshTokenAction</default>
+    </route>
+    <route id="credentials-new-access-token" path="/obtaine-new-access-token/">
+        <default key="_controller">\Deployer\Controller\CredentialsController::obtainNewAccessTokenAction</default>
+    </route>
+    <route id="main-page" path="/">
+        <default key="_controller">\Deployer\Controller\CredentialsController::indexAction</default>
+        <default key="_templates">main-page.phtml</default>
+    </route>
+   <!-- <route id="blog_list_2" path="/azaza/{page}/jjj/{omg}">
+        <default key="_controller">\Deployer\Controller\BlogController::megaAction</default>
+        <default key="_templates">
+            head.phtml
+            aa.phtml
+            footer.phtml
+        </default>
+    </route>-->
+</routes>
